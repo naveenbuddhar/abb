@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Form, Icon, Input, Button } from "antd";
-import { withFormik, FormikErrors, FormikProps } from "formik";
+import * as Antd from "antd";
+import { withFormik, FormikErrors, FormikProps, Field, Form } from "formik";
 // import * as yup from "yup";
-
 import { validUserSchema } from "@abb/common";
+import { InputField } from "../../shared/InputField";
+const { Form: AntForm, Icon, Button } = Antd;
 
-const FormItem = Form.Item;
+const FormItem = AntForm.Item;
 
 interface FormValues {
   email: string;
@@ -18,50 +19,25 @@ interface Props {
 
 class C extends React.PureComponent<FormikProps<FormValues> & Props> {
   render() {
-    const {
-      values,
-      handleSubmit,
-      handleChange,
-      handleBlur,
-      touched,
-      errors
-    } = this.props;
     return (
-      <form style={{ display: "flex" }} onSubmit={handleSubmit}>
+      <Form style={{ display: "flex" }}>
         <div style={{ width: "400", margin: "auto" }}>
-          <FormItem
-            help={
-              touched.email && errors.email ? errors.email : "" // tslint:disable-next-line:jsx-no-multiline-js
-            } // tslint:disable-next-line:jsx-no-multiline-js
-            validateStatus={touched.email && errors.email ? "error" : undefined}
-          >
-            <Input
-              name="email"
-              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="Email"
-              onChange={handleChange}
-              value={values.email}
-              onBlur={handleBlur}
-            />
-          </FormItem>
-          <FormItem
-            help={
-              touched.password && errors.password ? errors.password : "" // tslint:disable-next-line:jsx-no-multiline-js
-            }
-            validateStatus={
-              touched.password && errors.password ? "error" : undefined // tslint:disable-next-line:jsx-no-multiline-js
-            }
-          >
-            <Input
-              name="password"
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-              type="password"
-              placeholder="Password"
-              onChange={handleChange}
-              value={values.password}
-              onBlur={handleBlur}
-            />
-          </FormItem>
+          {/* Email field  */}
+          <Field
+            name="email"
+            prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+            placeholder="Email"
+            component={InputField}
+          />
+          {/* Password field */}
+          <Field
+            name="password"
+            type="password"
+            prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+            placeholder="Password"
+            component={InputField}
+          />
+
           <FormItem>
             <a className="login-form-forgot" href="">
               Forgot password
@@ -77,10 +53,10 @@ class C extends React.PureComponent<FormikProps<FormValues> & Props> {
             </Button>
           </FormItem>
           <FormItem>
-            Or <a href="">Login now!</a>
+            Or <a href="">Login now</a>
           </FormItem>
         </div>
-      </form>
+      </Form>
     );
   }
 }
