@@ -8,3 +8,6 @@ dump.rdb
 .env
 dist
 .env.prod
+.netlify
+netlifyctl-debug.log
+abb/node_modules
