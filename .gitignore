@@ -11,3 +11,4 @@ dist
 .netlify
 netlifyctl-debug.log
 abb/node_modules
+.netlify.toml
