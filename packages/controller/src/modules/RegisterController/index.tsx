@@ -4,11 +4,17 @@ import gql from "graphql-tag";
 import {
   RegisterMutation,
   RegisterMutationVariables
-} from "./__generated__/RegisterMutation";
+} from "./schemaTypes.ts/RegisterMutation";
+import { NormalizedErrorMap } from "../../types/NormalizedErrorMap";
+import { normalizedError } from "../util/normalizedError";
 
 interface Props {
   children: (
-    data: { submit: (values: RegisterMutationVariables) => Promise<null> }
+    data: {
+      submit: (
+        values: RegisterMutationVariables
+      ) => Promise<NormalizedErrorMap | null>;
+    }
   ) => JSX.Element | null;
 }
 
@@ -17,10 +23,15 @@ class C extends React.PureComponent<
 > {
   submit = async (values: RegisterMutationVariables) => {
     console.log(values);
-    const response = await this.props.mutate({
+    const {
+      data: { register }
+    } = await this.props.mutate({
       variables: values
     });
-    console.log("Response:", response);
+    console.log("Response:", register);
+    if (register) {
+      return normalizedError(register);
+    }
 
     return null;
   };

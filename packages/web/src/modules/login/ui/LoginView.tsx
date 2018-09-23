@@ -2,7 +2,7 @@ import * as React from "react";
 // import * as Antd from "antd";
 import { withFormik, FormikProps, Field, Form } from "formik";
 // import * as yup from "yup";
-import { validUserSchema } from "@abb/common";
+import { loginSchema } from "@abb/common";
 import { InputField } from "../../shared/InputField";
 import { Form as AntForm, Icon, Button } from "antd";
 import { Link } from "react-router-dom";
@@ -50,11 +50,11 @@ class C extends React.PureComponent<FormikProps<FormValues> & Props> {
               htmlType="submit"
               className="login-form-button"
             >
-              Register
+              Login
             </Button>
           </FormItem>
           <FormItem>
-            Or <Link to="/Login">Login now</Link>
+            Or <Link to="/register">Register</Link>
           </FormItem>
         </div>
       </Form>
@@ -64,10 +64,11 @@ class C extends React.PureComponent<FormikProps<FormValues> & Props> {
 
 // Formik validation and other necessary validation is being called here
 // ToDo : Need to look into the Formik Lib to understand better
-export const RegisterView = withFormik<Props, FormValues>({
+export const LoginView = withFormik<Props, FormValues>({
   mapPropsToValues: () => ({ email: "", password: "" }),
-  validationSchema: validUserSchema,
+  validationSchema: loginSchema,
   validateOnBlur: false,
+  validateOnChange: false,
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await props.submit(values);
     if (errors) {

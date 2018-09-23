@@ -1,7 +1,7 @@
 import * as React from "react";
-import { withFormik, FormikErrors, FormikProps, Field, Form } from "formik";
+import { withFormik, FormikErrors, FormikProps, Field } from "formik";
 // import * as yup from "yup";
-import { validUserSchema } from "@abb/common";
+import { loginSchema } from "@abb/common";
 import { View, Text } from "react-native";
 import { Button, Card } from "react-native-elements";
 import { InputField } from "../../shared/InputField";
@@ -28,7 +28,7 @@ class C extends React.PureComponent<FormikProps<FormValues> & Props> {
       >
         {/* Email field  */}
         <Card>
-          <Text style={{ fontSize: 30, marginBottom: 10 }}> Register Now </Text>
+          <Text style={{ fontSize: 30, marginBottom: 10 }}> Login </Text>
           <Field
             name="email"
             placeholder="Email"
@@ -59,10 +59,9 @@ class C extends React.PureComponent<FormikProps<FormValues> & Props> {
 
 // Formik validation and other necessary validation is being called here
 // ToDo : Need to look into the Formik Lib to understand better
-export const RegisterView = withFormik<Props, FormValues>({
+export const LoginView = withFormik<Props, FormValues>({
   mapPropsToValues: () => ({ email: "", password: "" }),
-  validationSchema: validUserSchema,
-  validateOnBlur: false,
+  validationSchema: loginSchema,
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await props.submit(values);
     if (errors) {

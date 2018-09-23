@@ -1,7 +1,11 @@
 import * as SparkPost from "sparkpost";
 const client = new SparkPost(process.env.SPARKPOST_API_KEY);
 
-export const sendEmail = async (recipient: string, url: string) => {
+export const sendEmail = async (
+  recipient: string,
+  url: string,
+  linkTest: string
+) => {
   const response = await client.transmissions.send({
     options: {
       sandbox: true
@@ -12,7 +16,7 @@ export const sendEmail = async (recipient: string, url: string) => {
       html: `<html>
         <body>
         <p>Testing SparkPost - the world's most awesomest email service!</p>
-        <a href="${url}">confirm email</a>
+        <a href="${url}">${linkTest}</a>
         </body>
         </html>`
     },

@@ -1,3 +1,5 @@
+// GraphQL Apollo
+
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import registerServiceWorker from "./registerServiceWorker";
@@ -6,7 +8,7 @@ import { client } from "./apollo";
 import { Routes } from "./routes";
 import "./index.css";
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider client={client as any}>
     <Routes />
   </ApolloProvider>,
   document.getElementById("root") as HTMLElement
