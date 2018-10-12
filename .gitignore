@@ -12,3 +12,5 @@ dist
 netlifyctl-debug.log
 abb/node_modules
 .netlify.toml
+ormconfig.json
+abb/ormconfig.json
