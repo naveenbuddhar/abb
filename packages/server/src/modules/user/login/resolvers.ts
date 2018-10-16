@@ -59,6 +59,9 @@ export const resolvers: ResolverMap = {
 
       // login sucessful
       session.userId = user.id;
+      console.log("====================================");
+      console.log(user.id);
+      console.log("====================================");
       if (req.sessionID) {
         await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);
       }

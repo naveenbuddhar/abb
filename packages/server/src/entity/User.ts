@@ -4,17 +4,21 @@ import {
   Column,
   BaseEntity,
   PrimaryGeneratedColumn,
-  BeforeInsert
+  BeforeInsert,
+  OneToMany
 } from "typeorm";
+import { Listings } from "./Listings";
 
 @Entity("users")
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid") id: string;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column("varchar", { length: 255 })
   email: string;
 
-  @Column("text") password: string;
+  @Column("text")
+  password: string;
 
   @Column("boolean", { default: false })
   confirmed: boolean;
@@ -26,4 +30,7 @@ export class User extends BaseEntity {
   async hashPasswordBeforeInsert() {
     this.password = await bcrypt.hash(this.password, 10);
   }
+
+  @OneToMany(() => Listings, listings => listings.user)
+  listings: Listings[];
 }
