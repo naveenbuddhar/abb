@@ -25,7 +25,7 @@ export const startServer = async () => {
   }
 
   const schema = genSchema() as any;
-  // We can also use Middleware to use the GRaphql
+  // We can also use Middleware to use the GRaphql middleware
   applyMiddleware(schema, middlewareShield);
 
   const server = new GraphQLServer({
