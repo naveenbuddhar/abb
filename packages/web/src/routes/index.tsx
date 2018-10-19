@@ -5,6 +5,8 @@ import { LoginConnector } from "../modules/login/LoginConnector";
 import { ForgotPasswordConnector } from "../modules/forgotpassword/ForgotPasswordConnector";
 import { ChangePasswordConnector } from "../modules/changepassword/ChangePasswordConnector";
 import { TypePage } from "../modules/TypePage/index";
+import { AuthRoute } from "@abb/controller";
+import { CreateListingConnector } from "../modules/listing/create/CreateListingConnector";
 
 export const Routes = () => (
   <BrowserRouter>
@@ -22,6 +24,7 @@ export const Routes = () => (
         component={ChangePasswordConnector}
       />
       <Route path="/m" component={TypePage} />
+      <AuthRoute path="/create-listing" component={CreateListingConnector} />
     </Switch>
   </BrowserRouter>
 );

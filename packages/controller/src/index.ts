@@ -6,3 +6,5 @@ export * from "./modules/RegisterController/schemaTypes.ts/RegisterMutation";
 export * from "./modules/LoginController/schemaTypes.ts/LoginMutation";
 export * from "./modules/changePasswordController/schemaTypes.ts/ForgotPasswordChangeMutation";
 export * from "./types/NormalizedErrorMap";
+export * from "./modules/Auth/schemaTypes.ts/MeQuery";
+export * from "./modules/Auth/AuthRoute";
